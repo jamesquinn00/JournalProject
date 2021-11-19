@@ -1,3 +1,4 @@
+// example blogs to display on inital page load
 blogs = [
     {id: 1,
     heading: "This is the first blog post",

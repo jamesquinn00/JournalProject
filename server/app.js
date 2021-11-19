@@ -7,6 +7,7 @@ const blogList = require("./data")
 app.use(bodyParser.json());
 app.use(cors());
 
+// define port
 const port = 3000;
 
 app.get('/', (req, res) => {

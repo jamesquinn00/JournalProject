@@ -1,5 +1,6 @@
 const blogsData = require('../data')
 
+// define Blog class
 class Blog {
     constructor(data) {
         this.id = data.id;

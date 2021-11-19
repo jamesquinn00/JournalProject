@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+// require Blog class
 const Blog = require("../models/blog");
 
 router.get('/', (req,res)=>{
