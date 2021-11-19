@@ -21,6 +21,14 @@ app.get('/blogs', (req, res) => {
     res.send(blogList)
 })
 
+app.get('/blogs/:id', (req, res) => {
+    try{
+      res.send(blogList[req.params.id-1])
+    }catch(err){
+      console.log(err)
+    }
+  })
+
 app.listen(port, ()=>{
     console.log(`Express departing now from http://localhost:${port}`)
 });
