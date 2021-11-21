@@ -7587,7 +7587,6 @@ button.bg-dark:focus {
 .mb-0,
 .my-0 {
   margin-bottom: 0 !important;
-  color: white;
 }
 
 .ml-0,
@@ -9835,9 +9834,9 @@ a.text-dark:focus {
 
 .edica-footer {
   background-color: var(--success);
-  padding-top: 120px;
+  padding-top: 80px;
   margin-top: -93px;
-  padding-bottom: 56px;
+  padding-bottom: -10px;
   color: #ffffff;
 }
 .edica-footer .footer-brand-wrapper {
