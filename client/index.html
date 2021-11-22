@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="assets/css/style.css" />
     <script src="assets/vendors/jquery/jquery.min.js"></script>
     <script src="assets/js/loader.js"></script>
+    <script defer src="assets/js/script.js"></script>
 
   </head>
   <body>
@@ -90,8 +91,12 @@
         <h1 id="header1" class="edica-page-title" data-aos="fade-up">Community Journaling</h1>
         <h2>Write your blog here</h2>
 
-        <!-- HERE -->
+        <!-- WRITE BLOG HERE -->
         <section class="blogsection">
+          <form>
+            
+            <input id="blog_title" type="text" class="form-control" maxlength = "20" placeholder="Enter blog title:">
+            
           <div class="form-floating">
             <textarea
               class="form-control"
@@ -102,10 +107,11 @@
             ></textarea>
             <label for="floatingTextarea2"></label>
           </div>
-
+          <input id="gif" type="text" class="form-control" placeholder="Choose a gif:">
           <button id="submitbutton" type="button" class="btn btn-success">
             Submit
           </button>
+          </form>
         </section>
         <br />
 
@@ -122,7 +128,7 @@
               <a href="#!" class="blog-post-permalink">
                 <h6 class="blog-post-title">
                   Blog post title 1
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur consectetur porro tempore laboriosam maxime inventore consequuntur, saepe harum sapiente rerum omnis quas deserunt sunt error asperiores dolores iste voluptate laudantium! Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur consectetur porro tempore laboriosam maxime inventore consequuntur, saepe harum sapiente rerum omnis quas deserunt sunt error asperiores dolores iste voluptate laudantium!
+                  
                 </h6>
               </a>
             </div>
@@ -141,6 +147,8 @@
                 </h6>
               </a>
             </div>
+
+
             <div class="col-md-4 fetured-post blog-post" data-aos="fade-left">
               <div class="blog-post-thumbnail-wrapper">
                 <img src="assets/images/blog_3.jpg" alt="blog post" />
@@ -335,6 +343,19 @@
         </div>
       </div>
     </main>
+<!-- COMMENTS SECTION -->
+    <section class="comments_section">
+<div id="disqus_thread"></div>
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://https-group4-journalproject-netlify-app.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+
+</script>
+    </section>
 
 <!-- arrow to next page -->
 

@@ -25,9 +25,6 @@ h2 {
   padding: 14px;
 }
 
-#submitbutton {
-  margin-left: 20px;
-}
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -10783,4 +10780,28 @@ label {
   text-align: center;
 }
 
+.comments_section {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#blog_title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: block;
+  font-size: 15px;
+
+  padding: 10px;
+}
+
+#gif {
+  font-size: 15px;
+
+  padding: 10px;
+}
+
+#submitbutton {
+  margin-top: 20px;
+  margin-left: 75px;
+}
 /*# sourceMappingURL=style.css.map */
