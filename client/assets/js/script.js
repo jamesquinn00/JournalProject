@@ -16,7 +16,7 @@ function displayOnLoad(data){
   
   for(let x in data){
       let currentBlog = data[x]
-      console.log(currentBlog)
+      // console.log(currentBlog)
       const blogPost = document.createElement("div")
       blogPost.setAttribute("class","blog-post")
       blogSection.appendChild(blogPost)
@@ -41,22 +41,46 @@ function displayOnLoad(data){
       const blogContent = document.createElement("p")
       blogContent.textContent = currentBlog.content
       blogLink.appendChild(blogContent)
-
       blogSection.appendChild(blogPost)
     }
-  // <div class="featured-post blog-post">
-  //             <div class="blog-post-thumbnail-wrapper blog-image">
-  //               <img src="assets/images/blog_1.jpg" alt="blog post" />
-  //             </div>
-  //             <a href="#" class="blog-post-permalink">
-  //               <h6 class="blog-post-title">
-  //                 Blog post title 1
-  //               </h6>
-  //               <p>
-  //                 Blog Content
-  //               </p>
-  //             </a>
-  //           </div>
+    addListeners(data)
+}
+
+function addListeners (data){
+  const blogSection = document.querySelector(".blog-section-simple")
+  const allBlogs = document.querySelectorAll(".blog-section-simple .blog-post")
+  console.log(data)
+  for(let i = 0; i<allBlogs.length; i++){
+    currentBlog = data[i]
+    allBlogs[i].addEventListener("click", e=>{
+      blogSection.style.display = "none";
+      let currentBlog = data[i]
+
+      const singleBlog = document.querySelector(".single-blog")
+      const blogPost = document.createElement("div")
+      blogPost.setAttribute("class","blog-post")
+      singleBlog.appendChild(blogPost)
+
+      const blogWrapper = document.createElement("div")
+      blogWrapper.setAttribute("class","blog-post-thumbnail-wrapper blog-image")
+      blogPost.appendChild(blogWrapper)
+
+      const blogImg = document.createElement("img")
+      blogImg.setAttribute("src","assets/images/blog_2.jpg")
+      blogWrapper.appendChild(blogImg)
+
+      const blogTitle = document.createElement("h6")
+      blogTitle.setAttribute("class", "blog-post-title")
+      blogTitle.textContent = currentBlog.heading
+      blogPost.appendChild(blogTitle)
+
+      const blogContent = document.createElement("p")
+      blogContent.textContent = currentBlog.content
+      blogPost.appendChild(blogContent)
+
+      singleBlog.appendChild(blogPost)
+    })
+  }
 }
 
 button.addEventListener("click", (e) => {
@@ -76,7 +100,7 @@ function handleBlogValues(e) {
   console.log(bloggif);
   //   let bloggif = document.querySelector("#gif").value;
   send(blogtitle, blogcontent, bloggif);
-  displayBlogOnPage(blogtitle, blogcontent, bloggif);
+  // displayBlogOnPage(blogtitle, blogcontent, bloggif);
   
 }
 
@@ -101,19 +125,19 @@ function send(title, contents, gif) {
   location.reload();
 }
 
-async function displayBlogOnPage(title, content, gif) {
-  try{
-    let response = await fetch(`http://localhost:3000/blogs/`);
-    response = await response.json();
-    let arrayLength =  await response.length;
-    console.log(arrayLength)
+// async function displayBlogOnPage(title, content, gif) {
+//   try{
+//     let response = await fetch(`http://localhost:3000/blogs/`);
+//     response = await response.json();
+//     let arrayLength =  await response.length;
+//     console.log(arrayLength)
 
-    let response2 = await fetch(`http://localhost:3000/blogs/${arrayLength}`);
-    response2 = await response2.json();
+//     let response2 = await fetch(`http://localhost:3000/blogs/${arrayLength}`);
+//     response2 = await response2.json();
 
-  } catch(err){
+//   } catch(err){
 
-  }
-}
+//   }
+// }
 
 //Also, how to give user option to choose a gif- how to show options with api?
