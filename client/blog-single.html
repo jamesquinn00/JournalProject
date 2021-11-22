@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Group 4 Community Journaling website</title>
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/emojis.css" />
     <script src="assets/vendors/jquery/jquery.min.js"></script>
     <script src="assets/js/loader.js"></script>
   </head>
@@ -179,69 +180,46 @@
                 </div>
               </div>
             </section>
-            <section class="comment-section">
-              <h2 class="section-title mb-5" data-aos="fade-up">
-                Leave a Reply
-              </h2>
-              <form action="/" method="post">
-                <div class="row">
-                  <div class="form-group col-12" data-aos="fade-up">
-                    <label for="comment" class="sr-only">Comment</label>
-                    <textarea
-                      name="comment"
-                      id="comment"
-                      class="form-control"
-                      placeholder="Comment"
-                      rows="10"
-                    >
-Comment</textarea
-                    >
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="form-group col-md-4" data-aos="fade-right">
-                    <label for="name" class="sr-only">Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      class="form-control"
-                      placeholder="Name*"
-                    />
-                  </div>
-                  <div class="form-group col-md-4" data-aos="fade-up">
-                    <label for="email" class="sr-only">Email</label>
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      class="form-control"
-                      placeholder="Email*"
-                      required
-                    />
-                  </div>
-                  <div class="form-group col-md-4" data-aos="fade-left">
-                    <label for="website" class="sr-only">Website</label>
-                    <input
-                      type="url"
-                      name="website"
-                      id="website"
-                      class="form-control"
-                      placeholder="Website*"
-                    />
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-12" data-aos="fade-up">
-                    <input
-                      type="submit"
-                      value="Send Message"
-                      class="btn btn-warning"
-                    />
-                  </div>
-                </div>
-              </form>
+
+            <!-- COMMENTS SECTION -->
+
+            <section class="comments_section">
+              <div id="disqus_thread"></div>
+              <script>
+                (function () {
+                  // DON'T EDIT BELOW THIS LINE
+                  var d = document,
+                    s = d.createElement("script");
+                  s.src =
+                    "https://https-group4-journalproject-netlify-app.disqus.com/embed.js";
+                  s.setAttribute("data-timestamp", +new Date());
+                  (d.head || d.body).appendChild(s);
+                })();
+              </script>
             </section>
+
+            <!-- EMOJIS: -->
+            <section id="emojis_section">
+              <div class="emoji emoji--like">
+                <div class="emoji__hand">
+                  <div class="emoji__thumb"></div>
+                </div>
+              </div>
+              <!-- Love  Emoji-->
+              <div class="emoji emoji--love">
+                <div class="emoji__heart"></div>
+              </div>
+              <!-- WOW Emoji-->
+              <div class="emoji emoji--wow">
+                <div class="emoji__face">
+                  <div class="emoji__eyebrows"></div>
+                  <div class="emoji__eyes"></div>
+                  <div class="emoji__mouth"></div>
+                </div>
+              </div>
+            </section>
+
+            <!-- FOOTER -->
           </div>
         </div>
       </div>
