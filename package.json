@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "start": "nodemon .server/app.js",
+    "test": "jest --silent --watchAll",
+    "coverage": "jest --coverage --silent"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "method-override": "^3.0.0"
   }
 }

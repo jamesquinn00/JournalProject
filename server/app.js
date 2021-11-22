@@ -8,7 +8,15 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // define port
-const port = 3000;
+const port = process.env. PORT || 5001;
+
+// // Static Files - to link client side, change public/css path etc
+// app.use(express.static('public'))
+// app.use('/css', express.static(__dirname + 'public/css'))
+// app.use('/img', express.static(__dirname + 'public/img'))
+// app.use('/js', express.static(__dirname + 'public/js'))
+
+
 
 app.get('/', (req, res) => {
     res.send("This is the Homepage");
@@ -32,3 +40,6 @@ app.get('/blogs/:id', (req, res) => {
 app.listen(port, ()=>{
     console.log(`Express departing now from http://localhost:${port}`)
 });
+
+
+module.exports = app;
