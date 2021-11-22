@@ -4,11 +4,13 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const blogList = require("./data")
 
+const fs = require('fs');
+
 app.use(bodyParser.json());
 app.use(cors());
 
 // define port
-const port = process.env. PORT || 5001;
+const port = process.env.PORT || 8000;
 
 // // Static Files - to link client side, change public/css path etc
 // app.use(express.static('public'))
