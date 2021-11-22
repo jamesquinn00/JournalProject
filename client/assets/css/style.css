@@ -5,7 +5,9 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-
+#heading-link{
+  text-decoration: none;
+}
 .blog-section-simple{
   width: 100%;
   display: flex;
@@ -10816,7 +10818,7 @@ label {
 
 #submitbutton {
   margin-top: 20px;
-  margin-left: 75px;
+  margin-left: 0;
 }
 /*# sourceMappingURL=style.css.map */
 /* Page Content */

@@ -12,11 +12,24 @@ async function pageLoad(){
 }
 
 function displayOnLoad(data){
-  const blogSection = document.querySelector(".blog-section-simple")
+  
   
   for(let x in data){
+      blogNumber = parseInt(x)+1
+      console.log(blogNumber)
       let currentBlog = data[x]
-      // console.log(currentBlog)
+      if(blogNumber<=6){
+        buildCards("#page1",currentBlog)
+      } else if(blogNumber>6 && blogNumber<=12){
+        buildCards("#page2",currentBlog)
+      }
+      
+    }
+    addListeners(data)
+}
+
+function buildCards(id,currentBlog){
+      const blogSection = document.querySelector(id)
       const blogPost = document.createElement("div")
       blogPost.setAttribute("class","blog-post")
       blogSection.appendChild(blogPost)
@@ -29,21 +42,23 @@ function displayOnLoad(data){
       blogImg.setAttribute("src","assets/images/blog_1.jpg")
       blogWrapper.appendChild(blogImg)
 
-      const blogLink = document.createElement("a")
-      blogLink.setAttribute("href",`http://localhost:3000/blogs/${currentBlog.id}`)
-      blogPost.appendChild(blogLink)
-
       const blogTitle = document.createElement("h6")
       blogTitle.setAttribute("class", "blog-post-title")
       blogTitle.textContent = currentBlog.heading
-      blogLink.appendChild(blogTitle)
+      blogPost.appendChild(blogTitle)
 
       const blogContent = document.createElement("p")
-      blogContent.textContent = currentBlog.content
-      blogLink.appendChild(blogContent)
+      let bloglength = currentBlog.content.replace("\n","").trim().length;
+      let blogtext = currentBlog.content.replace("\n","").trim();
+      if (bloglength>30){     
+        console.log(">30")       
+        console.log(blogtext.split());
+        console.log(`blog ${currentBlog.id} is too long`);
+        blogContent.textContent = blogtext.substring(0,150)+"...";
+        }
+      // blogContent.textContent = currentBlog.content
+      blogPost.appendChild(blogContent)
       blogSection.appendChild(blogPost)
-    }
-    addListeners(data)
 }
 
 function addListeners (data){
@@ -75,6 +90,7 @@ function addListeners (data){
       blogPost.appendChild(blogTitle)
 
       const blogContent = document.createElement("p")
+      
       blogContent.textContent = currentBlog.content
       blogPost.appendChild(blogContent)
 
@@ -82,6 +98,7 @@ function addListeners (data){
     })
   }
 }
+
 
 button.addEventListener("click", (e) => {
   handleBlogValues(e);
@@ -101,7 +118,6 @@ function handleBlogValues(e) {
   //   let bloggif = document.querySelector("#gif").value;
   send(blogtitle, blogcontent, bloggif);
   // displayBlogOnPage(blogtitle, blogcontent, bloggif);
-  
 }
 
 function send(title, contents, gif) {
