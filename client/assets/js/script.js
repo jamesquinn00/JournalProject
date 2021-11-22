@@ -1,5 +1,6 @@
-let button = document.querySelector("#submitbutton");
+let blogbutton = document.querySelector("#submitbutton");
 let form1 = document.querySelector("#form1");
+let commentbutton = document.querySelector("#commentbutton")
 
 async function pageLoad(){
   try{
@@ -12,8 +13,6 @@ async function pageLoad(){
 }
 
 function displayOnLoad(data){
-  
-  
   for(let x in data){
       blogNumber = parseInt(x)+1
       console.log(blogNumber)
@@ -31,7 +30,7 @@ function displayOnLoad(data){
 function buildCards(id,currentBlog){
       const blogSection = document.querySelector(id)
       const blogPost = document.createElement("div")
-      blogPost.setAttribute("class","blog-post")
+      blogPost.setAttribute("class","blog-post cursor-change")
       blogSection.appendChild(blogPost)
 
       const blogWrapper = document.createElement("div")
@@ -69,16 +68,18 @@ function addListeners (data){
     currentBlog = data[i]
     allBlogs[i].addEventListener("click", e=>{
       blogSection.style.display = "none";
-      let currentBlog = data[i]
+      document.querySelector("#page2").style.display = "none";
+      document.querySelector("#page3").style.display = "none";
+      let currentBlog = data[i];
 
-      const singleBlog = document.querySelector(".single-blog")
-      const blogPost = document.createElement("div")
-      blogPost.setAttribute("class","blog-post")
-      singleBlog.appendChild(blogPost)
+      const singleBlog = document.querySelector(".single-blog");
+      const blogPost = document.createElement("div");
+      blogPost.setAttribute("class","blog-post");
+      singleBlog.appendChild(blogPost);
 
-      const blogWrapper = document.createElement("div")
-      blogWrapper.setAttribute("class","blog-post-thumbnail-wrapper blog-image")
-      blogPost.appendChild(blogWrapper)
+      const blogWrapper = document.createElement("div");
+      blogWrapper.setAttribute("class","blog-post-thumbnail-wrapper blog-image");
+      blogPost.appendChild(blogWrapper);
 
       const blogImg = document.createElement("img")
       blogImg.setAttribute("src","assets/images/blog_2.jpg")
@@ -93,18 +94,16 @@ function addListeners (data){
       
       blogContent.textContent = currentBlog.content
       blogPost.appendChild(blogContent)
-
-      singleBlog.appendChild(blogPost)
+      singleBlog.insertBefore(blogPost, document.querySelector(".comments_section"))
+      document.querySelector("#emojis_section").style.display = "block";
+      document.querySelector(".comments_section").style.display = "block";
     })
   }
 }
 
-
-button.addEventListener("click", (e) => {
+blogbutton.addEventListener("click", (e) => {
   handleBlogValues(e);
 });
-
-
 
 function handleBlogValues(e) {
   e.preventDefault(e);
@@ -116,11 +115,21 @@ function handleBlogValues(e) {
   let bloggif = document.querySelector("#blog_gif").value;
   console.log(bloggif);
   //   let bloggif = document.querySelector("#gif").value;
-  send(blogtitle, blogcontent, bloggif);
+  sendBlog(blogtitle, blogcontent, bloggif);
   // displayBlogOnPage(blogtitle, blogcontent, bloggif);
 }
 
-function send(title, contents, gif) {
+commentbutton.addEventListener("click", (e) => {
+  handleCommentValues(e);
+});
+
+function handleCommentValues(e) {
+  e.preventDefault(e);
+  let comment = document.querySelector("#comment_content").value;
+  sendComment(comment)
+}
+
+function sendBlog(title, contents, gif) {
   const blogData = {
     id: null,
     heading: title,
@@ -139,6 +148,25 @@ function send(title, contents, gif) {
     .then((r) => r.json())
     .catch(console.warn);
   location.reload();
+}
+
+function sendComment(com) {
+  const commentData = {
+    id: null,
+    comment: com
+  }
+  console.log(commentData)
+  const options = {
+    method: "POST",
+    body: JSON.stringify(commentData),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  fetch("http://localhost:3000/comments", options)
+    .then((r) => r.json())
+    .catch(console.warn);
+  // location.reload();
 }
 
 // async function displayBlogOnPage(title, content, gif) {

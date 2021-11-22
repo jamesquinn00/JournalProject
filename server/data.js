@@ -37,4 +37,10 @@ blogs = [
     }
 ];
 
-module.exports = blogs;
+comments = [
+    {id: 1,
+    comment: "hello"
+    }
+]
+
+module.exports = {blogs, comments};

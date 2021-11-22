@@ -18,12 +18,25 @@ const blogRoutes = require("./controllers/blogs");
 app.use('/blogs', blogRoutes);
 
 app.get('/blogs', (req, res) => {
-    res.send(blogList)
+    res.send(blogList.blogs)
 })
 
 app.get('/blogs/:id', (req, res) => {
     try{
-      res.send(blogList[req.params.id-1])
+      res.send(blogList.blogs[req.params.id-1])
+    }catch(err){
+      console.log(err)
+    }
+  })
+
+// comment routes
+app.get('/comments', (req, res) => {
+    res.send(blogList.comments)
+})
+
+app.get('/comments/:id', (req, res) => {
+    try{
+      res.send(blogList.comments[req.params.id-1])
     }catch(err){
       console.log(err)
     }

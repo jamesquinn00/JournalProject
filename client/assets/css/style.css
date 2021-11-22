@@ -8,11 +8,27 @@
 #heading-link{
   text-decoration: none;
 }
+
+#emojis_section{
+  display: none;
+}
+
+.comments_section{
+  display: none;
+}
+
+.blog-post.cursor-change:hover{
+  cursor: pointer;
+}
 .blog-section-simple{
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+.emoji:hover{
+  cursor: pointer;
 }
 
 p{

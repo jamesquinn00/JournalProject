@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Group 4 Community Journaling website</title>
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/emojis.css" />
     <script src="assets/vendors/jquery/jquery.min.js"></script>
     <script src="assets/js/loader.js"></script>
     <script defer src="assets/js/script.js"></script>
-
   </head>
   <body onload="pageLoad()">
     <div class="edica-loader"></div>
@@ -137,7 +137,44 @@
         </div>
       </div>
         <section class="single-blog">
-          
+
+          <section class="comments_section">
+            <div class="form-floating">
+              <form id="form2">
+              <textarea
+                class="form-control"
+                placeholder="Leave a comment:"
+                id="comment_content"
+                style="height: 100px" 
+                maxlength = "100"
+              ></textarea>
+              <label for="floatingTextarea2"></label>
+            </div>
+            <button id="commentbutton" type="button" class="btn btn-success">
+              Submit
+            </button>
+            </form>
+          </section>
+
+          <section id="emojis_section">
+            <div class="emoji emoji--like">
+              <div class="emoji__hand">
+                <div class="emoji__thumb"></div>
+              </div>
+            </div>
+            <!-- Love  Emoji-->
+            <div class="emoji emoji--love">
+              <div class="emoji__heart"></div>
+            </div>
+            <!-- WOW Emoji-->
+            <div class="emoji emoji--wow">
+              <div class="emoji__face">
+                <div class="emoji__eyebrows"></div>
+                <div class="emoji__eyes"></div>
+                <div class="emoji__mouth"></div>
+              </div>
+            </div>
+          </section>
         </section>
       </div>
     </main>
