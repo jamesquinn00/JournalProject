@@ -97,6 +97,7 @@ function addListeners (data){
       singleBlog.insertBefore(blogPost, document.querySelector(".comments_section"))
       document.querySelector("#emojis_section").style.display = "block";
       document.querySelector(".comments_section").style.display = "block";
+      document.querySelector("#form1").style.display = "none";
     })
   }
 }
