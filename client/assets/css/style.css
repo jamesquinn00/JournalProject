@@ -10819,3 +10819,12 @@ label {
   margin-left: 75px;
 }
 /*# sourceMappingURL=style.css.map */
+/* Page Content */
+
+.page-content .page {
+  display: none;
+}
+
+.page-content .page.active {
+  display: block;
+}
