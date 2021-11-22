@@ -93,7 +93,7 @@
 
         <!-- WRITE BLOG HERE -->
         <section class="blogsection">
-          <form>
+          <form id="form1">
             
             <input id="blog_title" type="text" class="form-control" maxlength = "20" placeholder="Enter blog title:">
             
@@ -101,13 +101,13 @@
             <textarea
               class="form-control"
               placeholder="Enter blog post:"
-              id="blogtextarea"
+              id="blog_content"
               style="height: 100px" 
               maxlength = "100"
             ></textarea>
             <label for="floatingTextarea2"></label>
           </div>
-          <input id="gif" type="text" class="form-control" placeholder="Choose a gif:">
+          <input id="blog_gif" type="text" class="form-control" placeholder="Choose a gif:">
           <button id="submitbutton" type="button" class="btn btn-success">
             Submit
           </button>
@@ -196,6 +196,9 @@
                   </a>
                 </div>
               </div>
+
+
+
               <div class="row blog-post-row">
                 <div class="col-md-6 blog-post" data-aos="fade-up">
                   <div class="blog-post-thumbnail-wrapper">
@@ -220,10 +223,32 @@
                   </a>
                 </div>
               </div>
+
+              <!-- NEW CARD HERE: -->
+
               <div class="row blog-post-row">
-                
-                
+                <div class="col-md-6 blog-post" data-aos="fade-up">
+                  <div class="blog-post-thumbnail-wrapper">
+                    <img src="" alt="" />
+                  </div>
+                  <p class="blog-post-category"></p>
+                  <a href="#!" class="blog-post-permalink">
+                    <h6 id="blognewt" class="blog-post-title">
+                      
+                    </h6>
+                  </a>
+                </div>
+               
               </div>
+              
+
+
+
+
+
+
+
+
               <div class="row blog-post-row">
                 
               </div>
