@@ -83,7 +83,7 @@ function addListeners(data) {
       blogPost.appendChild(blogWrapper);
 
       const blogImg = document.createElement("img");
-      blogImg.setAttribute("src", "assets/images/blog_2.jpg");
+      blogImg.setAttribute("src", currentBlog.image);
       blogWrapper.appendChild(blogImg);
 
       const blogTitle = document.createElement("h6");
