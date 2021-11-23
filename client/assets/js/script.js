@@ -15,7 +15,7 @@ async function pageLoad() {
 function displayOnLoad(data) {
   for (let x in data) {
     blogNumber = parseInt(x) + 1;
-    console.log(blogNumber);
+    // console.log(blogNumber);
     let currentBlog = data[x];
     if (blogNumber <= 6) {
       buildCards("#page1", currentBlog);
@@ -37,7 +37,7 @@ function buildCards(id, currentBlog) {
   blogPost.appendChild(blogWrapper);
 
   const blogImg = document.createElement("img");
-  blogImg.setAttribute("src", currentBlog.img);
+  blogImg.setAttribute("src", currentBlog.image);
   blogWrapper.appendChild(blogImg);
 
   const blogTitle = document.createElement("h6");
@@ -48,13 +48,12 @@ function buildCards(id, currentBlog) {
   const blogContent = document.createElement("p");
   let bloglength = currentBlog.content.replace("\n", "").trim().length;
   let blogtext = currentBlog.content.replace("\n", "").trim();
-  if (bloglength > 30) {
-    console.log(">30");
-    console.log(blogtext.split());
-    console.log(`blog ${currentBlog.id} is too long`);
-    blogContent.textContent = blogtext.substring(0, 150) + "...";
+  if (bloglength>150){
+    blogContent.textContent = blogtext.substring(0,150)+'...';
   }
-  // blogContent.textContent = currentBlog.content
+  else{
+    blogContent.textContent = blogtext
+  }
   blogPost.appendChild(blogContent);
   blogSection.appendChild(blogPost);
 }
@@ -62,7 +61,7 @@ function buildCards(id, currentBlog) {
 function addListeners(data) {
   const blogSection = document.querySelector(".blog-section-simple");
   const allBlogs = document.querySelectorAll(".blog-section-simple .blog-post");
-  console.log(data);
+  // console.log(data);
   for (let i = 0; i < allBlogs.length; i++) {
     currentBlog = data[i];
     allBlogs[i].addEventListener("click", (e) => {
@@ -119,7 +118,6 @@ function addListeners(data) {
         singleBlog.style.display = "none";
         backButton.style.display = "none";
       });
-
       singleBlog.insertBefore(backButton, blogPost);
     });
   }
@@ -131,33 +129,66 @@ blogbutton.addEventListener("click", (e) => {
 
 function handleBlogValues(e) {
   e.preventDefault(e);
-  //   let blogtext = document.querySelector("#blogtextarea").value;
   let blogtitle = document.querySelector("#blog_title").value;
-  console.log(blogtitle);
   let blogcontent = document.querySelector("#blog_content").value;
-  console.log(blogcontent);
-  let bloggif = document.querySelector("#blog_gif").value;
-  console.log(bloggif);
-  //   let bloggif = document.querySelector("#gif").value;
-  sendBlog(blogtitle, blogcontent, bloggif);
-  // displayBlogOnPage(blogtitle, blogcontent, bloggif);
+  let bloggif = document.getElementById("blog_gif").value.trim();
+  if (bloggif===""){
+    sendBlog(blogtitle,blogcontent,"")
+  }
+  else{
+    getFinalGifUrl(bloggif)
+  };
 }
 
-commentbutton.addEventListener("click", (e) => {
-  handleCommentValues(e);
-});
+let APIKey = "S3T7ZBACrEr9MH7QC5RKPzsgF9zT6pjm";
+document.addEventListener("DOMContentLoaded", gifPreview);
 
-function handleCommentValues(e) {
-  e.preventDefault(e);
-  let comment = document.querySelector("#comment_content").value;
-  sendComment(comment);
+function gifPreview() {
+  let btn = document.querySelector("#gifbutton");
+  btn.addEventListener("click", e => {
+    e.preventDefault();
+    let preview = document.querySelector(".preview");
+    preview.textContent = "";
+    let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKey}&limit=1&q=`;
+    let str = document.getElementById("blog_gif").value.trim();
+    url = url.concat(str);
+    fetch(url)
+      .then((response) => response.json())
+      .then(content => {
+        let figure = document.createElement("figure");
+        figure.textContent = "";
+        let img = document.createElement("img");
+        img.src = content.data[0].images.downsized.url;
+        let gifImage = img.src
+        img.alt = content.data[0].title;
+        figure.appendChild(img);
+        preview.insertAdjacentElement("afterbegin", figure);
+        // console.log(gifImage)
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  });
 }
 
-function sendBlog(title, contents, gif) {
+function getFinalGifUrl(str){
+  let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKey}&limit=1&q=`;
+  url = url.concat(str);
+  fetch(url)
+    .then((response) => response.json())
+    .then(content => {
+      let gifImage = content.data[0].images.downsized.url;
+      let blogtitle = document.querySelector("#blog_title").value;
+      let blogcontent = document.querySelector("#blog_content").value;
+      sendBlog(blogtitle, blogcontent, gifImage);
+    })
+}
+
+function sendBlog(title, body, gif) {
   const blogData = {
     id: null,
     heading: title,
-    content: contents,
+    content: body,
     image: gif,
   };
   console.log(blogData);
@@ -172,6 +203,17 @@ function sendBlog(title, contents, gif) {
     .then((r) => r.json())
     .catch(console.warn);
   location.reload();
+}
+
+// COMMENT HANDLING ------------------------------------------
+commentbutton.addEventListener("click", (e) => {
+  handleCommentValues(e);
+});
+
+function handleCommentValues(e) {
+  e.preventDefault(e);
+  let comment = document.querySelector("#comment_content").value;
+  sendComment(comment);
 }
 
 function sendComment(com) {
@@ -192,57 +234,3 @@ function sendComment(com) {
     .catch(console.warn);
   // location.reload();
 }
-
-let APIKey = "S3T7ZBACrEr9MH7QC5RKPzsgF9zT6pjm";
-document.addEventListener("DOMContentLoaded", init);
-
-function init() {
-  let btn = document.querySelector("#gifbutton");
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    let preview = document.querySelector(".preview");
-    preview.textContent = "";
-    let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKey}&limit=1&q=`;
-    let str = document.getElementById("blog_gif").value.trim();
-    url = url.concat(str);
-    fetch(url)
-      .then((response) => response.json())
-      .then((content) => {
-        console.log(content.data);
-        console.log("META", content.meta);
-        let figure = document.createElement("figure");
-        let img = document.createElement("img");
-        let fc = document.createElement("figcaption");
-        img.src = content.data[0].images.downsized.url;
-        //we can try .preview_gif.url
-        img.alt = content.data[0].title;
-        fc.textContent = content.data[0].title;
-        figure.appendChild(img);
-        figure.appendChild(fc);
-
-        preview.insertAdjacentElement("afterbegin", figure);
-
-        document.querySelector("#blog_gif").value = "";
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  });
-}
-
-// async function displayBlogOnPage(title, content, gif) {
-//   try{
-//     let response = await fetch(`http://localhost:3000/blogs/`);
-//     response = await response.json();
-//     let arrayLength =  await response.length;
-//     console.log(arrayLength)
-
-//     let response2 = await fetch(`http://localhost:3000/blogs/${arrayLength}`);
-//     response2 = await response2.json();
-
-//   } catch(err){
-
-//   }
-// }
-
-//Also, how to give user option to choose a gif- how to show options with api?
