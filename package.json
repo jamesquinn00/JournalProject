@@ -1,0 +1,31 @@
+{
+  "name": "project-1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon ./server/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.3.1",
+    "jest-fetch-mock": "^3.0.3",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.1.6"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamesquinn00/JournalProject.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jamesquinn00/JournalProject/issues"
+  },
+  "homepage": "https://github.com/jamesquinn00/JournalProject#readme",
+  "description": ""
+}

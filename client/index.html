@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Group 4 Community Journaling website</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/emojis.css" />
+    <script src="assets/vendors/jquery/jquery.min.js"></script>
+    <script src="assets/js/loader.js"></script>
+    <script defer src="assets/js/script.js"></script>
+  </head>
+  <body onload="pageLoad()">
+    <div class="edica-loader"></div>
+    <header class="edica-header">
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <a class="navbar-brand" href="index.html">
+            <!-- PUT IMAGE LOGO HERE? -->
+            <img src="#" alt="" />
+          </a>
+          <button
+            class="navbar-toggler d-lg-none"
+            type="button"
+            data-toggle="collapse"
+            data-target="#edicaMainNav"
+            aria-controls="collapsibleNavId"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="edicaMainNav">
+            <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html"
+                  >Home <span class="sr-only">(current)</span></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="blogDropdown"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  >Featured blogs</a
+                >
+                <div class="dropdown-menu" aria-labelledby="blogDropdown">
+                  
+                  <a class="dropdown-item" href="blog-single.html">Blog Post</a>
+                </div>
+              </li>
+              
+              
+            </ul>
+            <ul class="navbar-nav mt-2 mt-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#"
+                  ><span
+                    class=""
+                    
+                  ></span>
+                  </a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"
+                  ><span
+                    class="
+                      flag-icon flag-icon-squared
+                      rounded-circle
+                      flag-icon-gb
+                    "
+                  ></span>
+                  Eng</a
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="blog">
+      <div class="container">
+        <a id="heading-link" href="index.html">
+        <h1 id="header1" class="edica-page-title" data-aos="fade-up">Community Journaling</h1>
+      </a>
+        <h2>Write your blog here</h2>
+      
+        <!-- WRITE BLOG HERE -->
+        <section>
+          <form id="form1">
+            
+            <input id="blog_title" type="text" class="form-control" maxlength = "20" placeholder="Enter blog title:">
+            
+          <div class="form-floating">
+            <textarea
+              class="form-control"
+              placeholder="Enter blog post:"
+              id="blog_content"
+              style="height: 100px" 
+              maxlength = "100"
+            ></textarea>
+            <label for="floatingTextarea2"></label>
+          </div>
+          <input id="blog_gif" type="text" class="form-control" placeholder="Choose a gif:">
+          <button id="gifbutton">Preview Gif</button>
+          <div class="preview"></div>
+        
+
+          <button id="submitbutton" type="button" class="btn btn-success">
+            Submit
+          </button>
+          </form>
+        </section>
+        <br />
+
+
+        <!-- post cards start here  -->
+      <div class="page-content">
+        <div class="page active">
+        <section id="page1" class="blog-section-simple">
+  
+        </section>
+        </div>
+        <div class="page">
+          <section id="page2" class="blog-section-simple">
+  
+          </section>
+        </div>
+        <div class="page">
+          <section id="page3" class="blog-section-simple">
+  
+          </section>
+        </div>
+      </div>
+        <section class="single-blog">
+
+          <section class="comments_section">
+            <div class="form-floating">
+              <form id="form2">
+              <textarea
+                class="form-control"
+                placeholder="Leave a comment:"
+                id="comment_content"
+                style="height: 100px" 
+                maxlength = "100"
+              ></textarea>
+              <label for="floatingTextarea2"></label>
+            </div>
+            <button id="commentbutton" type="button" class="btn btn-success">
+              Submit
+            </button>
+            </form>
+          </section>
+
+          <section id="emojis_section">
+            <div class="emoji emoji--like">
+              <div class="emoji__hand">
+                <div class="emoji__thumb"></div>
+              </div>
+            </div>
+            <!-- Love  Emoji-->
+            <div class="emoji emoji--love">
+              <div class="emoji__heart"></div>
+            </div>
+            <!-- WOW Emoji-->
+            <div class="emoji emoji--wow">
+              <div class="emoji__face">
+                <div class="emoji__eyebrows"></div>
+                <div class="emoji__eyes"></div>
+                <div class="emoji__mouth"></div>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+    </main>
+
+<!-- COMMENTS SECTION -->
+   
+
+<!-- arrow to next page -->
+
+<nav class="nextpage" aria-label="...">
+  <ul class="pagination">
+    <li class="page-item disabled">
+      <span class="page-link previous-page">Previous</span>
+    </li>
+    <li class="page-item page-number active" id="button-2"><a class="page-link" href="#">1</a></li>
+    <li class="page-item page-number" id="button-2"><a class="page-link" href="#">2</a></li>
+    <li class="page-item page-number" id="button-3"><a class="page-link" href="#">3</a></li>
+    <li class="page-item disabled">
+      <span class="page-link next-page">Next</span>
+    </li>
+  </ul>
+</nav>
+
+    
+    <footer class="edica-footer" data-aos="fade-up">
+      <div class="container">
+        <div class="row footer-widget-area">
+          <div class="col-md-3">
+            <a href="index.html" class="footer-brand-wrapper">
+              <h1>Group 4</h1>
+            </a>
+            <p class="contact-details">fp@futureproof.com</p>
+            <p class="contact-details">+44 0000 000 00</p>
+
+
+            <nav class="footer-social-links">
+              <a href="#!"><i class="fab fa-facebook-f"></i></a>
+              <a href="#!"><i class="fab fa-twitter"></i></a>
+              
+            </nav>
+
+          </div>
+          <div class="col-md-3">
+            <nav class="footer-nav">
+              <a href="#!" class="nav-link">Company</a>
+              <a href="#!" class="nav-link">Android App</a>
+              <a href="#!" class="nav-link">ios App</a>
+              
+            </nav>
+          </div>
+          <div class="col-md-3">
+            <nav class="footer-nav">
+              <a href="#!" class="nav-link">FAQ</a>
+              <a href="#!" class="nav-link">Reporting</a>
+              <a href="#!" class="nav-link">Block Storage</a>
+              
+            </nav>
+          </div>
+          
+        </div>
+        <div class="footer-bottom-content">
+         
+          <p class="mb-0">
+            © Group 4. 2021
+            <a
+              href="https://www.bootstrapdash.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-reset"
+              ></a
+            >
+            . 
+          </p>
+        </div>
+      </div>
+    </footer>
+    
+    <script src="assets/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script defer src="assets/js/pagination.js"></script>
+  </body>
+</html>
