@@ -95,9 +95,27 @@ function addListeners (data){
       blogContent.textContent = currentBlog.content
       blogPost.appendChild(blogContent)
       singleBlog.insertBefore(blogPost, document.querySelector(".comments_section"))
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
       document.querySelector("#emojis_section").style.display = "block";
       document.querySelector(".comments_section").style.display = "block";
       document.querySelector("#form1").style.display = "none";
+
+      const backButton = document.createElement("button")
+      backButton.textContent = "Go Back"
+      backButton.setAttribute("class", "btn btn-success")
+      backButton.setAttribute("id", "backbutton")
+      backButton.addEventListener("click", e=>{
+        blogSection.style.display = "flex";
+        document.querySelector("#page2").style.display = "flex";
+        document.querySelector("#page3").style.display = "flex";
+        document.querySelector("#emojis_section").style.display = "none";
+        document.querySelector(".comments_section").style.display = "none";
+        document.querySelector("#form1").style.display = "block";
+        singleBlog.style.display = "none";
+        backButton.style.display = "none";
+      })
+
+      singleBlog.insertBefore(backButton,blogPost)
     })
   }
 }

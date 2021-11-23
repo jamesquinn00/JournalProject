@@ -19,6 +19,8 @@ let activatePage = () => {
             })
     
             pages[i].classList.add("active");
+            // scroll to top of page once page has changed
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
         })
     }
     window.scroll(0, 0);
