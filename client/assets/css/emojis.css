@@ -6,7 +6,7 @@
   display: inline-block;
   border-radius: 50%;
   position: relative;
-  margin-bottom: 200px;
+  margin-bottom: 50px;
 }
 
 .emoji:after {
@@ -288,3 +288,38 @@
     transform: rotate(5deg);
   }
 }
+
+.count-box {
+  background: none;
+  bottom: 85px;
+  margin-top: -30px;
+  box-sizing: border-box
+}
+
+/*#like-counter {
+  height: 6px;
+  width: 6px;
+  margin: 15px 15px 90px;
+}*/
+
+/*
+#like-counter:after {
+  content: "0";
+  height: 6px;
+  width: 6px;
+  margin: 15px 15px 90px;
+}
+
+#love-counter:after {
+  content: "0";
+  height: 6px;
+  width: 6px;
+  margin: 15px 15px 90px;
+}
+
+#wow-counter:after {
+  content: "0";
+  height: 6px;
+  width: 6px;
+  margin: 15px 15px 90px;
+}*/

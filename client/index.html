@@ -10,6 +10,7 @@
     <script src="assets/vendors/jquery/jquery.min.js"></script>
     <script src="assets/js/loader.js"></script>
     <script defer src="assets/js/script.js"></script>
+    <script defer src="assets/js/emojis.js"></script>
   </head>
   <body onload="pageLoad()">
     <div class="edica-loader"></div>
@@ -161,24 +162,34 @@
           </section>
 
           <section id="emojis_section">
-            <div class="emoji emoji--like">
+            <div class="emoji emoji--like" id="like-emoji">
               <div class="emoji__hand">
                 <div class="emoji__thumb"></div>
               </div>
             </div>
+            <div class="emoji count-box" id="like-counter">
+              <p>0</p>
+            </div>
             <!-- Love  Emoji-->
-            <div class="emoji emoji--love">
+            <div class="emoji emoji--love" id="love-emoji">
               <div class="emoji__heart"></div>
             </div>
+            <div class="emoji count-box" id="love-counter">
+              <p>0</p>
+            </div>
             <!-- WOW Emoji-->
-            <div class="emoji emoji--wow">
+            <div class="emoji emoji--wow" id="wow-emoji">
               <div class="emoji__face">
                 <div class="emoji__eyebrows"></div>
                 <div class="emoji__eyes"></div>
                 <div class="emoji__mouth"></div>
               </div>
             </div>
+            <div class="emoji count-box" id="wow-counter">
+              <p>0</p>
+            </div>
           </section>
+
         </section>
       </div>
     </main>
