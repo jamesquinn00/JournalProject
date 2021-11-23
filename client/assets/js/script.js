@@ -21,6 +21,8 @@ function displayOnLoad(data) {
       buildCards("#page1", currentBlog);
     } else if (blogNumber > 6 && blogNumber <= 12) {
       buildCards("#page2", currentBlog);
+    } else if (blogNumber > 12 && blogNumber <= 18) {
+      buildCards("#page3", currentBlog);
     }
   }
   addListeners(data);
