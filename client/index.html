@@ -98,10 +98,11 @@
         <section>
           <form id="form1">
             
-            <input id="blog_title" type="text" class="form-control" maxlength = "20" placeholder="Enter blog title:">
+            <input required id="blog_title" type="text" class="form-control" maxlength = "20" placeholder="Enter blog title:"/>
             
           <div class="form-floating">
             <textarea
+              required
               class="form-control"
               placeholder="Enter blog post:"
               id="blog_content"
@@ -115,7 +116,7 @@
           <div class="preview"></div>
         
 
-          <button id="submitbutton" type="button" class="btn btn-success">
+          <button id="submitbutton" type="submit" class="btn btn-success">
             Submit
           </button>
           </form>
@@ -259,6 +260,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="text-reset"
+              
               ></a
             >
             . 
