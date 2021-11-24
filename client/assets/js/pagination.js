@@ -1,9 +1,11 @@
+//Query selectors for page buttons to click and for "active" class to be rotated
 let pagenos = document.querySelectorAll(".page-number");
 const next = document.querySelector(".next-page");
 const previous = document.querySelector(".previous-page");
 //let page=document.querySelector('ul.pagination > li.active');
 let pages = document.querySelectorAll(".page-content .page");
 
+//Function to add "active" class for page number button
 let activatePage = () => {
     for (let i=0; i<=2; i++){
         pagenos[i].addEventListener("click", e => {
@@ -26,9 +28,11 @@ let activatePage = () => {
     window.scroll(0, 0);
 }
 
+//EventListeners for Next Page and Previous Page
 next.addEventListener("click", nextPage);
 previous.addEventListener("click", previousPage);
 
+//Function to go to next and previous pages
 function nextPage() {
     var pageCounter=0;
     for (let j=0; j<=2; j++){
@@ -95,4 +99,5 @@ function previousPage() {
     }
 }
 
+//Execute function for acivatePage(contains nextPage() and previousPage() functions)
 activatePage();
