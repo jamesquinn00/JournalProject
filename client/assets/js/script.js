@@ -6,7 +6,7 @@ let commentbutton = document.querySelector("#commentbutton");
 async function pageLoad() {
   try {
     // fetch data upon page load, then call the displayOnLoad function
-    let response = await fetch(`http://localhost:3000/blogs/`);
+    let response = await fetch(`http://localhost:3001/blogs/`);
     response = await response.json();
     displayOnLoad(response);
   } catch (err) {
@@ -249,7 +249,7 @@ function sendBlog(title, body, gif) {
     },
   };
   // post to the '/blogs' URL
-  fetch("http://localhost:3000/blogs", options)
+  fetch("http://localhost:3001/blogs", options)
     .then((r) => r.json())
     .catch(console.warn);
   location.reload();
@@ -279,7 +279,7 @@ function sendComment(com) {
       "Content-Type": "application/json",
     },
   };
-  fetch("http://localhost:3000/comments", options)
+  fetch("http://localhost:3001/comments", options)
     .then((r) => r.json())
     .catch(console.warn);
   // location.reload();
