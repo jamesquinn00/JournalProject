@@ -97,27 +97,28 @@
         <!-- WRITE BLOG HERE -->
         <section>
           <form id="form1">
-            
-            <input id="blog_title" type="text" class="form-control" maxlength = "20" placeholder="Enter blog title:">
-            
-          <div class="form-floating">
-            <textarea
-              class="form-control"
-              placeholder="Enter blog post:"
-              id="blog_content"
-              style="height: 100px" 
-              maxlength = "200"
-            ></textarea>
-            <label for="floatingTextarea2"></label>
-          </div>
-          <input id="blog_gif" type="text" class="form-control" placeholder="Choose a gif:">
-          <button id="gifbutton">Preview Gif</button>
-          <div class="preview"></div>
-        
 
-          <button id="submitbutton" type="button" class="btn btn-success">
-            Submit
-          </button>
+            <input id="blog_title" type="text" class="form-control" maxlength = "20" placeholder="Enter blog title:" required></input>
+            
+            <div class="form-floating">
+              <textarea
+                required
+                class="form-control"
+                placeholder="Enter blog post:"
+                id="blog_content"
+                style="height: 100px" 
+                maxlength = "200"
+              ></textarea>
+              <label for="floatingTextarea2"></label>
+            </div>
+
+            <input id="blog_gif" type="text" class="form-control" placeholder="Choose a gif:"></input>
+            <button type="button" id="gifbutton">Preview Gif</button>
+            <div class="preview"></div>
+          
+            <button id="submitbutton" type="submit" class="btn btn-success">
+              Submit
+            </button>
           </form>
         </section>
         <br />
@@ -234,17 +235,15 @@
           </div>
           <div class="col-md-3">
             <nav class="footer-nav">
-              <a href="#!" class="nav-link">Company</a>
-              <a href="#!" class="nav-link">Android App</a>
-              <a href="#!" class="nav-link">ios App</a>
+              <a href="#!" class="nav-link">Souheil Fenghour</a>
+              <a href="#!" class="nav-link">Bethan Vaughan</a>
               
             </nav>
           </div>
           <div class="col-md-3">
             <nav class="footer-nav">
-              <a href="#!" class="nav-link">FAQ</a>
-              <a href="#!" class="nav-link">Reporting</a>
-              <a href="#!" class="nav-link">Block Storage</a>
+              <a href="#!" class="nav-link">Talha Sadak</a>
+              <a href="#!" class="nav-link">James Quinn</a>
               
             </nav>
           </div>
@@ -255,7 +254,7 @@
           <p class="mb-0">
             © Group 4. 2021
             <a
-              href="https://www.bootstrapdash.com"
+              href="#"
               target="_blank"
               rel="noopener noreferrer"
               class="text-reset"

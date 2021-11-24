@@ -102,6 +102,7 @@ function addListeners(data) {
       singleBlog.insertBefore(blogPost, document.querySelector(".comments_section"));
       document.body.scrollTop = document.documentElement.scrollTop = 0;
       document.querySelector("#form1").style.display = "none";
+      document.querySelector('.nextpage').style.display ="none";
       document.querySelector("#emojis_section").style.display = "block";
       document.querySelector(".comments_section").style.display = "block";
       console.log("clicked single blog")
@@ -120,6 +121,7 @@ function addListeners(data) {
         document.querySelector("#emojis_section").style.display = "none";
         document.querySelector(".comments_section").style.display = "none";
         document.querySelector("#form1").style.display = "block";
+        document.querySelector('.nextpage').style.display ="block";
         backButton.style.display = "none";
         document.body.scrollTop = document.documentElement.scrollTop = 0;
       });
@@ -150,6 +152,7 @@ document.addEventListener("DOMContentLoaded", gifPreview);
 
 function gifPreview() {
   let btn = document.querySelector("#gifbutton");
+  btn.setAttribute("class","btn-success")
   btn.addEventListener("click", e => {
     e.preventDefault();
     let preview = document.querySelector(".preview");
