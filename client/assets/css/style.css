@@ -5,37 +5,37 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-#heading-link{
+#heading-link {
   text-decoration: none;
 }
 
-#emojis_section{
+#emojis_section {
   display: none;
 }
 
-.blog-post{
+.blog-post {
   margin-bottom: 10% !important;
 }
-.comments_section{
+.comments_section {
   display: none;
 }
 
-.blog-post.cursor-change:hover{
+.blog-post.cursor-change:hover {
   cursor: pointer;
 }
-.blog-section-simple{
+.blog-section-simple {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
 
-.emoji:hover{
+.emoji:hover {
   cursor: pointer;
 }
 
-p{
-  color:#000000
+p {
+  color: #000000;
 }
 .blog-section-simple > div {
   flex-wrap: wrap;
@@ -10850,7 +10850,7 @@ label {
   display: block;
 }
 
-#backbutton{
+#backbutton {
   margin-bottom: 20px;
 }
 
@@ -10860,28 +10860,27 @@ label {
 .page-content .page.active {
   display: block;
 }
-.pagination > li > a
-{
-    background-color: white;
-    color: #2E937A;
+.pagination > li > a {
+  background-color: white;
+  color: #2e937a;
 }
 .pagination > li > a:focus,
 .pagination > li > a:hover,
 .pagination > li > span:focus,
-.pagination > li > span:hover
-{
-    color: #5A5A5A;
-    background-color: #eee;
-    border-color: #ddd;
+.pagination > li > span:hover {
+  color: #5a5a5a;
+  background-color: #eee;
+  border-color: #ddd;
 }
-.pagination > .active > a
-{
-    color: white;
-    background-color: #2E937A !Important;
-    border: solid 1px #2E937A !Important;
+.pagination > .active > a {
+  color: white;
+  background-color: #2e937a !important;
+  border: solid 1px #2e937a !important;
 }
-.pagination > .active > a:hover
-{
-    background-color: #2E937A !Important;
-    border: solid 1px #2E937A;
+.pagination > .active > a:hover {
+  background-color: #2e937a !important;
+  border: solid 1px #2e937a;
+}
+#miriam {
+  text-align: center;
 }
