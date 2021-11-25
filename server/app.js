@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // define port
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 app.get("/", (req, res) => {
   res.send("This is the Homepage");
