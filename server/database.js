@@ -68,25 +68,4 @@ function writeBlog(newBlog){
 module.exports = {retrieveAllBlogs, writeBlog, retrieveBlog};
 
 
-//////////////////////
-// EXAMPLE CODE USAGE
 
-
-
-// // retrieveAllBlogs(myCallback)
-// retrieveAllBlogs((err, allBlogs) => {
-//     console.log('ALL BLOGS');
-//     console.log(allBlogs);
-// })
-
-// // Retrieve one blog
-// retrieveBlog('2', (err, blogFive) => {
-//     console.log('ONE BLOG');
-//     console.log(blogFive);
-// })
-
-// // Write/update blog in database
-// newUpdatedBlog = {
-//     "content": "hello mister"
-// }
-// writeBlog(newUpdatedBlog)
