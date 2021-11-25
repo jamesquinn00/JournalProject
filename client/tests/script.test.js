@@ -32,6 +32,59 @@ describe("script", () => {
       });
     });
 
+    describe("buildCards", () => {
+      test("it exists", () => {
+        expect(script.buildCards).toBeTruthy();
+      });
+    });
+
+    describe("sendBlog", () => {
+      test("it exists", () => {
+        expect(script.sendBlog).toBeTruthy();
+      });
+    });
+
+    describe("sendComment", () => {
+      test("it exists", () => {
+        expect(script.sendComment).toBeTruthy();
+      });
+    });
+
+    describe("handleCommentValues", () => {
+      test("it exists", () => {
+        expect(script.handleCommentValues).toBeTruthy();
+      });
+    });
+
+    describe("getFinalGifUrl", () => {
+      test("it exists", () => {
+        expect(script.getFinalGifUrl).toBeTruthy();
+      });
+    });
+
+    describe("gifPreview", () => {
+      test("it exists", () => {
+        expect(script.gifPreview).toBeTruthy();
+      });
+    });
+    describe("addListeners", () => {
+      test("it exists", () => {
+        expect(script.addListeners).toBeTruthy();
+      });
+    });
+    describe("buildCards", () => {
+      test("it exists", () => {
+        expect(script.buildCards).toBeTruthy();
+      });
+    });
+
+    describe("requests", () => {
+      test("it makes a request to /", () => {
+        script.pageLoad();
+        expect(fetch).toHaveBeenCalled();
+      });
+    });
+
     // TESTS NOT WORKING: TESTS FROM SERGI
 
     // describe("sendBlog", () => {
