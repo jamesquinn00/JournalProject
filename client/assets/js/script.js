@@ -215,11 +215,6 @@ function addListeners(data) {
   }
 }
 
-// // event listener for the blog form submission, calls the handleBlogValues function
-// blogbutton.addEventListener("click", (e) => {
-//   handleBlogValues(e);
-// });
-
 // event listener for the blog form submission, calls the handleBlogValues function
 form1.addEventListener("submit", (e) => {
   handleBlogValues(e);

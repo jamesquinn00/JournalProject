@@ -65,7 +65,7 @@ function writeBlog(newBlog){
 
 }
 
-module.exports = {retrieveAllBlogs, writeBlog, retrieveBlog};
+module.exports = {readDatabase, writeDatabase, retrieveAllBlogs, writeBlog, retrieveBlog};
 
 
 

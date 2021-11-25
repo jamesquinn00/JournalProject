@@ -25,7 +25,7 @@ let activatePage = () => {
     nextPage();
     previousPage();
   }
-  window.scroll(0, 0);
+  // window.scroll(0, 0);
 };
 
 //EventListeners for Next Page and Previous Page
