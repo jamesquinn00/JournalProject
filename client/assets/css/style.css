@@ -20,6 +20,11 @@
   display: none;
 }
 
+#comment-list{
+  color: #818181;
+  line-height: 300%;
+}
+
 .blog-post.cursor-change:hover {
   cursor: pointer;
 }

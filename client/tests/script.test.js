@@ -44,12 +44,6 @@ describe("script", () => {
       });
     });
 
-    describe("sendComment", () => {
-      test("it exists", () => {
-        expect(script.sendComment).toBeTruthy();
-      });
-    });
-
     describe("handleCommentValues", () => {
       test("it exists", () => {
         expect(script.handleCommentValues).toBeTruthy();

@@ -1,5 +1,6 @@
 let blogbutton = document.querySelector("#submitbutton");
 let form1 = document.querySelector("#form1");
+let form2 = document.querySelector("#form2");
 let commentbutton = document.querySelector("#commentbutton");
 
 let allBlogs = {};
@@ -193,6 +194,19 @@ function addListeners(data) {
       });
       // insert the back button above the single blog post
       singleBlog.insertBefore(backButton, blogPost);
+
+      // display comments fetched from blog database
+      const commentUl = document.createElement("ul")
+      commentUl.textContent = "Comments:"
+      commentUl.setAttribute("id", "comment-list")
+      // iterate through comments in database and add to unordered list
+      for(let i in currentBlog.comments){
+        const commentLi = document.createElement("li")
+        commentLi.style.listStyleType = "none";
+        commentLi.textContent = currentBlog.comments[i]
+        commentUl.appendChild(commentLi)
+      }
+      singleBlog.insertBefore(commentUl, document.querySelector(".comments_section"))
     });
   }
 }
@@ -331,7 +345,7 @@ function sendBlog(id, title, body, gif, comments, reacts) {
 }
 
 // COMMENT HANDLING ------------------------------------------
-commentbutton.addEventListener("click", (e) => {
+form2.addEventListener("submit", (e) => {
   handleCommentValues(e);
 });
 
@@ -356,33 +370,37 @@ function handleCommentValues(e) {
     currentBlog["comments"] = [comment];
   }
 
+  const commentLi = document.createElement("li")
+  commentLi.style.listStyleType = "none";
+  commentLi.textContent = comment
+  document.querySelector("#comment-list").appendChild(commentLi)
+
   sendBlog(id, null, null, null, currentBlog["comments"], null);
 }
 
-function sendComment(com) {
-  const commentData = {
-    id: null,
-    comment: com,
-  };
-  console.log(commentData);
-  const options = {
-    method: "POST",
-    body: JSON.stringify(commentData),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  fetch("http://localhost:3001/comments", options)
-    .then((r) => r.json())
-    .catch(console.warn);
-  // location.reload();
-}
+// function sendComment(com) {
+//   const commentData = {
+//     id: null,
+//     comment: com,
+//   };
+//   console.log(commentData);
+//   const options = {
+//     method: "POST",
+//     body: JSON.stringify(commentData),
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   };
+//   fetch("http://localhost:3001/comments", options)
+//     .then((r) => r.json())
+//     .catch(console.warn);
+//   // location.reload();
+// }
 
 module.exports = {
   pageLoad,
   sendBlog,
   displayOnLoad,
-  sendComment,
   handleCommentValues,
   getFinalGifUrl,
   gifPreview,
