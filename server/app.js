@@ -4,6 +4,9 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const blogList = require("./data");
 
+// importing all helper functions 
+const db = require('./database');
+
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -14,12 +17,15 @@ app.get("/", (req, res) => {
   res.send("This is the Homepage");
 });
 
-const blogRoutes = require("./controllers/blogs");
-app.use("/blogs", blogRoutes);
 
 app.get("/blogs", (req, res) => {
-  res.send(blogList.blogs);
-});
+  try{
+    db.retrieveAllBlogs((err, data) => res.send(data));
+  }
+  catch (err){
+    console.log(err)
+  }
+})
 
 app.get("/blogs/:id", (req, res) => {
   try {
