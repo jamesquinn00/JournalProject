@@ -5,16 +5,21 @@ let commentbutton = document.querySelector("#commentbutton");
 let allBlogs = {};
 let currentPostId = -1;
 
+document.addEventListener("DOMContentLoaded", pageLoad);
+
 // Asynchronous function for when page loads
 async function pageLoad() {
   try {
     // fetch data upon page load, then call the displayOnLoad function
+    
     let response = await fetch(`http://localhost:3001/blogs/`);
     response = await response.json();
     displayOnLoad(response);
+    gifinit()
   } catch (err) {
     console.log(err);
   }
+
 }
 
 // Function to iterate through fetched data, each blog is then sent to buildCards 1 by 1
@@ -57,7 +62,7 @@ function buildCards(id, currentBlog) {
 
   // Create a html img element and assign its source to the image value of currentBlog 
   const blogImg = document.createElement("img");
-  if(currentBlog.image !== null){
+  if(currentBlog.image !== null && currentBlog.image !== ""){
     blogImg.setAttribute("src", currentBlog.image);
     }
   else{
@@ -124,7 +129,12 @@ function addListeners(data) {
       blogWrapper.setAttribute("class", "blog-post-thumbnail-wrapper blog-image");
       blogPost.appendChild(blogWrapper);
       const blogImg = document.createElement("img");
-      blogImg.setAttribute("src", currentBlog.image);
+      if(currentBlog.image !== null && currentBlog.image !== ""){
+        blogImg.setAttribute("src", currentBlog.image);
+        }
+      else{
+        blogImg.setAttribute("src", "https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif");
+      }
       blogWrapper.appendChild(blogImg);
       // CHANGE
       // Add blog id before title
@@ -219,19 +229,21 @@ function handleBlogValues(e) {
   // call the sendBlog function with an empty string as the image argument
 
   // CHANGE
-  if (!bloggif===""){
+  if (bloggif!==""){
     bloggif = getFinalGifUrl(bloggif);
   }
   
   // creates new blog entry
-  sendBlog(null, blogtitle, blogcontent, bloggif, null, null);
+  else{
+    sendBlog(null, blogtitle, blogcontent, bloggif, null, null);
+  }
 }
 
 // GIF HANDLING ----------------------------------------------
 // Define the API key from GIPHY
 let APIKey = "S3T7ZBACrEr9MH7QC5RKPzsgF9zT6pjm";
 // once DOM content is loaded, call the gifPreview function
-document.addEventListener("DOMContentLoaded", gifPreview);
+
 
 function gifPreview() {
   // define the preview gif button as variable called btn
@@ -281,11 +293,11 @@ function getFinalGifUrl(str){
   fetch(url)
     .then((response) => response.json())
     .then(content => {
-      return content.data[0].images.downsized.url //(Check what this is for)
-      // let gifImage = content.data[0].images.downsized.url;
-      // let blogtitle = document.querySelector("#blog_title").value;
-      // let blogcontent = document.querySelector("#blog_content").value;
-      // sendBlog(blogtitle, blogcontent, gifImage);
+      // return content.data[0].images.downsized.url //(Check what this is for)
+      let gifImage = content.data[0].images.downsized.url;
+      let blogtitle = document.querySelector("#blog_title").value;
+      let blogcontent = document.querySelector("#blog_content").value;
+      sendBlog(null, blogtitle, blogcontent, gifImage, null, null);
     })
 }
 
