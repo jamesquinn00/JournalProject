@@ -21,7 +21,7 @@ async function pageLoad() {
 function displayOnLoad(data) {
   allBlogs = data;
   for (let x in data) {
-    blogNumber = parseInt(x) + 1;
+    blogNumber = parseInt(x);
     // console.log(blogNumber);
     let currentBlog = data[x];
     // If statement to select the page id depending the blog number
@@ -41,30 +41,43 @@ function displayOnLoad(data) {
 
 // Function to build blog cards from scratch
 function buildCards(id, currentBlog) {
+
   // define html elements (where the cards will go) as variables
   const blogSection = document.querySelector(id);
   const blogPost = document.createElement("div");
+
   // set the class of BlogPost to a pre-made Edica class, add to the larger blogSection container
   blogPost.setAttribute("class", "blog-post cursor-change");
   blogSection.appendChild(blogPost);
+
   // Create a html div element for the image to be put in, give it Edica classes
   const blogWrapper = document.createElement("div");
   blogWrapper.setAttribute("class", "blog-post-thumbnail-wrapper blog-image");
   blogPost.appendChild(blogWrapper);
+
   // Create a html img element and assign its source to the image value of currentBlog 
   const blogImg = document.createElement("img");
-  blogImg.setAttribute("src", currentBlog.image);
+  if(currentBlog.image !== null){
+    blogImg.setAttribute("src", currentBlog.image);
+    }
+  else{
+    blogImg.setAttribute("src", "https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif");
+  }
   blogWrapper.appendChild(blogImg);
+
   // Create a html h6 element, give it Edica classes, assign text content to the heading value of currentBlog
   const blogTitle = document.createElement("h6");
   blogTitle.setAttribute("class", "blog-post-title");
   blogTitle.textContent = currentBlog.heading;
   blogPost.appendChild(blogTitle);
+
   // Create html p element and assign text content currentBlog content value
   const blogContent = document.createElement("p");
+
   // Remove new lines and trim trailing spaces, and get the length of the blog content
   let bloglength = currentBlog.content.replace("\n", "").trim().length;
   let blogtext = currentBlog.content.replace("\n", "").trim();
+
   // if blog content is >150 characters, only first 150 are displayed and ... is added at the end
   if (bloglength>150){
     blogContent.textContent = blogtext.substring(0,150)+'...';
@@ -72,6 +85,7 @@ function buildCards(id, currentBlog) {
   else{
     blogContent.textContent = blogtext
   }
+
   // Add the blog content to the card, then add the card to the larger blog section containter
   blogPost.appendChild(blogContent);
   blogSection.appendChild(blogPost);
@@ -79,24 +93,32 @@ function buildCards(id, currentBlog) {
 
 // Function to add event listeners to each of the blog posts
 function addListeners(data) {
+
   // define 'blog section container' and 'all blog posts' as separate variables
   const blogSection = document.querySelector(".blog-section-simple");
   const allBlogs = document.querySelectorAll(".blog-section-simple .blog-post");
+
   // iterate through each blog post (the cards produced in buildCards)
   for (let i = 0; i < allBlogs.length; i++) {
+
     // add an 'click' event listener to the current blog in the iteration
     allBlogs[i].addEventListener("click", (e) => {
+
       // set the entire grid of cards to display: none
       blogSection.style.display = "none";
       document.querySelector("#page2").style.display = "none";
       document.querySelector("#page3").style.display = "none";
-      let currentBlog = data[i];
+
+      let currentBlog = data[i+1]; //CHANGE
+
       // choose the singleBlog html element, which is a containter for a single blog post
       const singleBlog = document.querySelector(".single-blog");
       const blogPost = document.createElement("div");
+
       // start building a single card in a similar way to buildCards, add to the singleBlog container
       blogPost.setAttribute("class", "blog-post");
       singleBlog.appendChild(blogPost);
+
       // add wrapper and image to the blog post
       const blogWrapper = document.createElement("div");
       blogWrapper.setAttribute("class", "blog-post-thumbnail-wrapper blog-image");
@@ -176,8 +198,13 @@ function addListeners(data) {
   }
 }
 
+// // event listener for the blog form submission, calls the handleBlogValues function
+// blogbutton.addEventListener("click", (e) => {
+//   handleBlogValues(e);
+// });
+
 // event listener for the blog form submission, calls the handleBlogValues function
-blogbutton.addEventListener("click", (e) => {
+form1.addEventListener("submit", (e) => {
   handleBlogValues(e);
 });
 
@@ -193,7 +220,7 @@ function handleBlogValues(e) {
 
   // CHANGE
   if (!bloggif===""){
-    blogif = getFinalGifUrl(bloggif);
+    bloggif = getFinalGifUrl(bloggif);
   }
   
   // creates new blog entry
@@ -254,10 +281,11 @@ function getFinalGifUrl(str){
   fetch(url)
     .then((response) => response.json())
     .then(content => {
-      let gifImage = content.data[0].images.downsized.url;
-      let blogtitle = document.querySelector("#blog_title").value;
-      let blogcontent = document.querySelector("#blog_content").value;
-      sendBlog(blogtitle, blogcontent, gifImage);
+      return content.data[0].images.downsized.url //(Check what this is for)
+      // let gifImage = content.data[0].images.downsized.url;
+      // let blogtitle = document.querySelector("#blog_title").value;
+      // let blogcontent = document.querySelector("#blog_content").value;
+      // sendBlog(blogtitle, blogcontent, gifImage);
     })
 }
 
@@ -294,10 +322,10 @@ function sendBlog(id, title, body, gif, comments, reacts) {
       "Content-Type": "application/json",
     },
   };
-  console.log(blogData)
+  console.log(blogData);
 
   // post to the '/blogs' URL
-  fetch("http://localhost:3001/blogs", options)
+  fetch("http://localhost:3001/newBlog", options)
     .then((r) => r.json())
     .catch(console.warn);
   location.reload();
