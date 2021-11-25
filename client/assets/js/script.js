@@ -2,6 +2,9 @@ let blogbutton = document.querySelector("#submitbutton");
 let form1 = document.querySelector("#form1");
 let commentbutton = document.querySelector("#commentbutton");
 
+let allBlogs = {};
+let currentPostId = -1;
+
 // Asynchronous function for when page loads
 async function pageLoad() {
   try {
@@ -16,6 +19,7 @@ async function pageLoad() {
 
 // Function to iterate through fetched data, each blog is then sent to buildCards 1 by 1
 function displayOnLoad(data) {
+  allBlogs = data;
   for (let x in data) {
     blogNumber = parseInt(x) + 1;
     // console.log(blogNumber);
@@ -100,31 +104,55 @@ function addListeners(data) {
       const blogImg = document.createElement("img");
       blogImg.setAttribute("src", currentBlog.image);
       blogWrapper.appendChild(blogImg);
+      // CHANGE
+      // Add blog id before title
+            // const blogId = document.createElement("h6");
+      // blogId.setAttribute("class", "blog-post-title");
+      // blogId.setAttribute("id", "current-blog-id");
+      // blogId.textContent = currentBlog.id;
+      // blogPost.appendChild(blogId);
+      currentPostId = currentBlog['id'];
+
+
       // add blog title to blog post
       const blogTitle = document.createElement("h6");
       blogTitle.setAttribute("class", "blog-post-title");
       blogTitle.textContent = currentBlog.heading;
       blogPost.appendChild(blogTitle);
+
+
       // add blog content to blog post
       const blogContent = document.createElement("p");
       blogContent.textContent = currentBlog.content;
       blogPost.appendChild(blogContent);
+
+
       // insert the newly made single blog post at the top of the page
       singleBlog.insertBefore(blogPost, document.querySelector(".comments_section"));
+
+
       // automatically scroll to the top of the page, hide the blog form and pagination
       document.body.scrollTop = document.documentElement.scrollTop = 0;
       document.querySelector("#form1").style.display = "none";
       document.querySelector('.nextpage').style.display ="none";
+
+
       // display the emoji and comment sections
       document.querySelector("#emojis_section").style.display = "block";
       document.querySelector(".comments_section").style.display = "block";
+
+
       // create a 'back button' that takes the user back to the main page of blogs
       const backButton = document.createElement("button");
       backButton.style.display = "block";
       backButton.textContent = "Go Back";
+
+
       // give the button the preset Edica classes
       backButton.setAttribute("class", "btn btn-success");
       backButton.setAttribute("id", "backbutton");
+
+
       // add a click event listener to back button
       backButton.addEventListener("click", (e) => {
         // redisplay the main blog post container again
@@ -162,13 +190,14 @@ function handleBlogValues(e) {
   let bloggif = document.getElementById("blog_gif").value.trim();
   // if user doesnt enter anything in the gif section, 
   // call the sendBlog function with an empty string as the image argument
-  if (bloggif===""){
-    sendBlog(blogtitle,blogcontent,"")
+
+  // CHANGE
+  if (!bloggif===""){
+    blogif = getFinalGifUrl(bloggif);
   }
-  // if user types anything in the gif section, call getFinalGifURl
-  else{
-    getFinalGifUrl(bloggif)
-  };
+  
+  // creates new blog entry
+  sendBlog(null, blogtitle, blogcontent, bloggif, null, null);
 }
 
 // GIF HANDLING ----------------------------------------------
@@ -188,6 +217,7 @@ function gifPreview() {
     let preview = document.querySelector(".preview");
     // clear any previous gif previews
     preview.textContent = "";
+
     // define the GIPHY API URL, insert the API key previously defined,
     // and add the users gif search to the end of the URL
     let url = `https://api.giphy.com/v1/gifs/search?api_key=${APIKey}&limit=1&q=`;
@@ -232,14 +262,30 @@ function getFinalGifUrl(str){
 }
 
 // Function to post the users input data to the server
-function sendBlog(title, body, gif) {
+function sendBlog(id, title, body, gif, comments, reacts) {
+
   // create an object that has the users input as values
-  const blogData = {
-    id: null,
-    heading: title,
-    content: body,
-    image: gif,
-  };
+  // only use inputs that are not null
+  const blogData = {};
+  if (id !== null){
+    blogData['id'] = id;
+  }
+  if (title !== null){
+    blogData['heading'] = title;
+  }
+  if (body !== null){
+    blogData['content'] = body;
+  }
+  if (gif !== null){
+    blogData['image'] = gif;
+  }
+  if (comments !== null){
+    blogData['comments'] = comments;
+  }
+  if (reacts !== null){
+    blogData['reacts'] = reacts;
+  }
+
   // post method object is defined, with stringified blogData object
   const options = {
     method: "POST",
@@ -248,6 +294,8 @@ function sendBlog(title, body, gif) {
       "Content-Type": "application/json",
     },
   };
+  console.log(blogData)
+
   // post to the '/blogs' URL
   fetch("http://localhost:3001/blogs", options)
     .then((r) => r.json())
@@ -263,7 +311,22 @@ commentbutton.addEventListener("click", (e) => {
 function handleCommentValues(e) {
   e.preventDefault(e);
   let comment = document.querySelector("#comment_content").value;
-  sendComment(comment);
+  let id = currentPostId;
+  
+  // Retrieve the blog that this comment belongs to 
+  console.log(allBlogs)
+  console.log(id)
+
+  let currentBlog = allBlogs[id];
+
+  // See if currentBlog has other comments already 
+  if (currentBlog.hasOwnProperty('comments') && Array.isArray(currentBlog['comments'])){
+    currentBlog['comments'].push(comment);
+  } else {
+    currentBlog['comments'] = [comment]
+  }
+
+  sendBlog(id, null, null, null, currentBlog['comments'], null);
 }
 
 function sendComment(com) {
