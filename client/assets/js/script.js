@@ -106,7 +106,7 @@ function addListeners(data) {
       blogWrapper.appendChild(blogImg);
       // CHANGE
       // Add blog id before title
-            // const blogId = document.createElement("h6");
+      // const blogId = document.createElement("h6");
       // blogId.setAttribute("class", "blog-post-title");
       // blogId.setAttribute("id", "current-blog-id");
       // blogId.textContent = currentBlog.id;

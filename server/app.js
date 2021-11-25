@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const blogList = require("./data");
+// const blogList = require("./data");
 
 // importing all helper functions 
 const db = require('./database');
@@ -27,27 +27,30 @@ app.get("/blogs", (req, res) => {
   }
 })
 
-app.get("/blogs/:id", (req, res) => {
-  try {
-    res.send(blogList.blogs[req.params.id - 1]);
-  } catch (err) {
-    console.log(err);
+
+app.get('/blogs/:id', (req, res) => {
+  const cb = (err, blog) => res.send(blog);
+  const blogId = req.params.id.toString();
+  try{
+    db.retrieveBlog(blogId, cb);
+  } catch(err){
+    console.log(err)
   }
-});
+})
 
-// comment routes
-app.get("/comments", (req, res) => {
-  res.send(blogList.comments);
-});
-
-app.get("/comments/:id", (req, res) => {
+app.post('/newBlog', (req, res) => {
+  const newBlog = req.body
+  console.log(newBlog)
   try {
-    res.send(blogList.comments[req.params.id - 1]);
-  } catch (err) {
-    console.log(err);
+    db.writeBlog(newBlog) 
+    console.log(newBlog)
+    res.send('Your blog has been posted')
+  }catch (err){
+    console.log(err)
   }
+})
+
+app.listen(port, ()=>{
+    console.log(`Express departing now from http://localhost:${port}`)
 });
 
-app.listen(port, () => {
-  console.log(`Express departing now from http://localhost:${port}`);
-});
