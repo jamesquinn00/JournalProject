@@ -166,6 +166,20 @@ function addListeners(data) {
       document.querySelector("#emojis_section").style.display = "block";
       document.querySelector(".comments_section").style.display = "block";
 
+      // display comments fetched from blog database
+      const commentUl = document.createElement("ul")
+      commentUl.setAttribute("id", "comment-list")
+      commentUl.textContent = "Comments:"
+      commentUl.style.display = "block";
+      // iterate through comments in database and add to unordered list
+      for(let i in currentBlog.comments){
+        const commentLi = document.createElement("li")
+        commentLi.style.listStyleType = "none";
+        commentLi.textContent = currentBlog.comments[i]
+        commentUl.appendChild(commentLi)
+      }
+      singleBlog.insertBefore(commentUl, document.querySelector(".comments_section"))
+
       // create a 'back button' that takes the user back to the main page of blogs
       const backButton = document.createElement("button");
       backButton.style.display = "block";
@@ -187,6 +201,7 @@ function addListeners(data) {
         document.querySelector("#page3").style.display = "flex";
         document.querySelector("#emojis_section").style.display = "none";
         document.querySelector(".comments_section").style.display = "none";
+        commentUl.textContent="";
         document.querySelector("#form1").style.display = "block";
         document.querySelector(".nextpage").style.display = "block";
         backButton.style.display = "none";
@@ -195,18 +210,7 @@ function addListeners(data) {
       // insert the back button above the single blog post
       singleBlog.insertBefore(backButton, blogPost);
 
-      // display comments fetched from blog database
-      const commentUl = document.createElement("ul")
-      commentUl.textContent = "Comments:"
-      commentUl.setAttribute("id", "comment-list")
-      // iterate through comments in database and add to unordered list
-      for(let i in currentBlog.comments){
-        const commentLi = document.createElement("li")
-        commentLi.style.listStyleType = "none";
-        commentLi.textContent = currentBlog.comments[i]
-        commentUl.appendChild(commentLi)
-      }
-      singleBlog.insertBefore(commentUl, document.querySelector(".comments_section"))
+      
     });
   }
 }
