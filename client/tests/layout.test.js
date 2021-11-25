@@ -72,7 +72,7 @@ describe("index.html", () => {
         });
 
         test('it is a text input"', () => {
-          expect(BlogContent.getAttribute("type")).toBe("text");
+          expect(BlogContent.tagName).toBe("TEXTAREA");
         });
 
         test('it has a label"', () => {

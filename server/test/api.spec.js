@@ -1,34 +1,34 @@
 const request = require("supertest");
-
 const server = require("../app");
-
 const data = require("../data");
 
 describe("API server", () => {
   let api;
+  // it("check if 2+2=4", ()=>{
+  //   expect(2+2).toEqual(4)
+  // });
 
-  beforeAll(() => {
-    // here we start the server and store it in the api variable
-    api = server.listen(5000, () =>
-      console.log("Test server running on port 5000")
-    );
+  beforeAll(()=>{
+    // start the server and store it in the api variable
+    api = server.listen(5000, ()=>{
+        console.log("Test server running on port 5000");
+    });
   });
 
-  afterAll((done) => {
-    //close the server, then we run done.
-    console.log("Now stopping the test server");
-    api.close(done);
+  afterAll((done)=>{
+      // close the server, then run done
+      console.log("Gracefully stopping test server");
+      api.close(done);
   });
 
-  it("responds to get / with status 200", (done) => {
-    request(api).get("/").expect(200, done);
+  it("Responds to get / with status 200", (done)=>{
+      request(api).get("/").expect(200,done);
   });
 
-  it("responds to get /blogs with status 200", (done) => {
-    request(api).get("/").expect(200, done);
+  it("Responds to get /blogs with status 200", (done)=>{
+      request(api).get("/blogs").expect(200,done);
   });
 
-  // test not working
   it("responds to get /blogs to fetch 7 results", () => {
     request(api)
       .get("/blogs")

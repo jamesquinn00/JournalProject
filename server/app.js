@@ -54,3 +54,4 @@ app.listen(port, ()=>{
     console.log(`Express departing now from http://localhost:${port}`)
 });
 
+module.exports = app;
