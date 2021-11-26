@@ -7,7 +7,7 @@ let allBlogs = {};
 let currentPostId = -1;
 
 document.addEventListener("DOMContentLoaded", pageLoad);
-document.addEventListener("DOMContentLoaded", gifPreview());
+document.addEventListener("DOMContentLoaded", gifPreview);
 
 // Asynchronous function for when page loads
 async function pageLoad() {

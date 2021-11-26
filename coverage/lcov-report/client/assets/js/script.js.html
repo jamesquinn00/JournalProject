@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.19% </span>
+                <span class="strong">10.27% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/183</span>
+                <span class='fraction'>19/185</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">5% </span>
+                <span class="strong">10% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/20</span>
+                <span class='fraction'>2/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.24% </span>
+                <span class="strong">10.32% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/182</span>
+                <span class='fraction'>19/184</span>
             </div>
         
             
@@ -475,6 +475,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -484,7 +485,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -638,6 +639,20 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -659,25 +674,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -717,10 +717,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -884,16 +884,17 @@ let allBlogs = {};
 let currentPostId = -1;
 &nbsp;
 document.addEventListener("DOMContentLoaded", pageLoad);
+document.addEventListener("DOMContentLoaded", gifPreview());
 &nbsp;
 // Asynchronous function for when page loads
 async function pageLoad() {
   try {
     // fetch data upon page load, then call the displayOnLoad function
 &nbsp;
-    let response = await fetch(`http://localhost:3001/blogs/`);
+    let response = await fetch(`https://project-blog-g4.herokuapp.com/blogs`);
     response = await response.json();
 <span class="cstat-no" title="statement not covered" >    displayOnLoad(response);</span>
-<span class="cstat-no" title="statement not covered" >    gifinit();</span>
+    // gifinit();
   } catch (err) {
     console.log(err);
   }
@@ -1043,6 +1044,20 @@ function <span class="fstat-no" title="function not covered" >addListeners(</spa
 <span class="cstat-no" title="statement not covered" >      document.querySelector("#emojis_section").style.display = "block";</span>
 <span class="cstat-no" title="statement not covered" >      document.querySelector(".comments_section").style.display = "block";</span>
 &nbsp;
+      // display comments fetched from blog database
+      const commentUl = <span class="cstat-no" title="statement not covered" >document.createElement("ul")</span>
+<span class="cstat-no" title="statement not covered" >      commentUl.setAttribute("id", "comment-list")</span>
+<span class="cstat-no" title="statement not covered" >      commentUl.textContent = "Comments:"</span>
+<span class="cstat-no" title="statement not covered" >      commentUl.style.display = "block";</span>
+      // iterate through comments in database and add to unordered list
+<span class="cstat-no" title="statement not covered" >      for(let i in currentBlog.comments){</span>
+        const commentLi = <span class="cstat-no" title="statement not covered" >document.createElement("li")</span>
+<span class="cstat-no" title="statement not covered" >        commentLi.style.listStyleType = "none";</span>
+<span class="cstat-no" title="statement not covered" >        commentLi.textContent = currentBlog.comments[i]</span>
+<span class="cstat-no" title="statement not covered" >        commentUl.appendChild(commentLi)</span>
+      }
+<span class="cstat-no" title="statement not covered" >      singleBlog.insertBefore(commentUl, document.querySelector(".comments_section"))</span>
+&nbsp;
       // create a 'back button' that takes the user back to the main page of blogs
       const backButton = <span class="cstat-no" title="statement not covered" >document.createElement("button");</span>
 <span class="cstat-no" title="statement not covered" >      backButton.style.display = "block";</span>
@@ -1064,6 +1079,7 @@ function <span class="fstat-no" title="function not covered" >addListeners(</spa
 <span class="cstat-no" title="statement not covered" >        document.querySelector("#page3").style.display = "flex";</span>
 <span class="cstat-no" title="statement not covered" >        document.querySelector("#emojis_section").style.display = "none";</span>
 <span class="cstat-no" title="statement not covered" >        document.querySelector(".comments_section").style.display = "none";</span>
+<span class="cstat-no" title="statement not covered" >        commentUl.textContent="";</span>
 <span class="cstat-no" title="statement not covered" >        document.querySelector("#form1").style.display = "block";</span>
 <span class="cstat-no" title="statement not covered" >        document.querySelector(".nextpage").style.display = "block";</span>
 <span class="cstat-no" title="statement not covered" >        backButton.style.display = "none";</span>
@@ -1072,26 +1088,10 @@ function <span class="fstat-no" title="function not covered" >addListeners(</spa
       // insert the back button above the single blog post
 <span class="cstat-no" title="statement not covered" >      singleBlog.insertBefore(backButton, blogPost);</span>
 &nbsp;
-      // display comments fetched from blog database
-      const commentUl = <span class="cstat-no" title="statement not covered" >document.createElement("ul")</span>
-<span class="cstat-no" title="statement not covered" >      commentUl.textContent = "Comments:"</span>
-<span class="cstat-no" title="statement not covered" >      commentUl.setAttribute("id", "comment-list")</span>
-      // iterate through comments in database and add to unordered list
-<span class="cstat-no" title="statement not covered" >      for(let i in currentBlog.comments){</span>
-        const commentLi = <span class="cstat-no" title="statement not covered" >document.createElement("li")</span>
-<span class="cstat-no" title="statement not covered" >        commentLi.style.listStyleType = "none";</span>
-<span class="cstat-no" title="statement not covered" >        commentLi.textContent = currentBlog.comments[i]</span>
-<span class="cstat-no" title="statement not covered" >        commentUl.appendChild(commentLi)</span>
-      }
-<span class="cstat-no" title="statement not covered" >      singleBlog.insertBefore(commentUl, document.querySelector(".comments_section"))</span>
+      
     });
   }
 }
-&nbsp;
-// // event listener for the blog form submission, calls the handleBlogValues function
-// blogbutton.addEventListener("click", (e) =&gt; {
-//   handleBlogValues(e);
-// });
 &nbsp;
 // event listener for the blog form submission, calls the handleBlogValues function
 form1.addEventListener("submit", <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
@@ -1124,12 +1124,12 @@ function <span class="fstat-no" title="function not covered" >handleBlogValues(<
 let APIKey = "S3T7ZBACrEr9MH7QC5RKPzsgF9zT6pjm";
 // once DOM content is loaded, call the gifPreview function
 &nbsp;
-function <span class="fstat-no" title="function not covered" >gifPreview(</span>) {
+function gifPreview() {
   // define the preview gif button as variable called btn
-  let btn = <span class="cstat-no" title="statement not covered" >document.querySelector("#gifbutton");</span>
-<span class="cstat-no" title="statement not covered" >  btn.setAttribute("class", "btn-success");</span>
+  let btn = document.querySelector("#gifbutton");
+  btn.setAttribute("class", "btn-success");
   // add event listener for the preview button
-<span class="cstat-no" title="statement not covered" >  btn.addEventListener("click", <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {</span>
+  btn.addEventListener("click", <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
 <span class="cstat-no" title="statement not covered" >    e.preventDefault();</span>
     // define the preview section html element as a variable called preview
     let preview = <span class="cstat-no" title="statement not covered" >document.querySelector(".preview");</span>
@@ -1215,7 +1215,7 @@ function <span class="fstat-no" title="function not covered" >sendBlog(</span>id
 <span class="cstat-no" title="statement not covered" >  console.log(blogData);</span>
 &nbsp;
   // post to the '/blogs' URL
-<span class="cstat-no" title="statement not covered" >  fetch("http://localhost:3001/newBlog", options)</span>
+<span class="cstat-no" title="statement not covered" >  fetch("https://project-blog-g4.herokuapp.com/newBlog", options)</span>
     .then(<span class="fstat-no" title="function not covered" >(r</span>) =&gt; <span class="cstat-no" title="statement not covered" >r.json())</span>
     .catch(console.warn);
 <span class="cstat-no" title="statement not covered" >  location.reload();</span>
@@ -1291,7 +1291,7 @@ module.exports = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Thu Nov 25 2021 20:53:33 GMT+0000 (Greenwich Mean Time)
+                at Fri Nov 26 2021 10:53:01 GMT+0000 (Greenwich Mean Time)
             </div>
         </div>
         <script src="../../../prettify.js"></script>
