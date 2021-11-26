@@ -7,6 +7,7 @@ let allBlogs = {};
 let currentPostId = -1;
 
 document.addEventListener("DOMContentLoaded", pageLoad);
+document.addEventListener("DOMContentLoaded", gifPreview());
 
 // Asynchronous function for when page loads
 async function pageLoad() {
@@ -16,7 +17,7 @@ async function pageLoad() {
     let response = await fetch(`https://project-blog-g4.herokuapp.com/blogs`);
     response = await response.json();
     displayOnLoad(response);
-    gifinit();
+    // gifinit();
   } catch (err) {
     console.log(err);
   }
