@@ -13,7 +13,7 @@ async function pageLoad() {
   try {
     // fetch data upon page load, then call the displayOnLoad function
 
-    let response = await fetch(`http://localhost:3001/blogs/`);
+    let response = await fetch(`https://project-blog-g4.herokuapp.com/blogs`);
     response = await response.json();
     displayOnLoad(response);
     gifinit();
@@ -337,7 +337,7 @@ function sendBlog(id, title, body, gif, comments, reacts) {
   console.log(blogData);
 
   // post to the '/blogs' URL
-  fetch("http://localhost:3001/newBlog", options)
+  fetch("https://project-blog-g4.herokuapp.com/newBlog", options)
     .then((r) => r.json())
     .catch(console.warn);
   location.reload();
