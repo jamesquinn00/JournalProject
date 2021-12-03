@@ -9,11 +9,8 @@ let currentPostId = -1;
 document.addEventListener("DOMContentLoaded", pageLoad);
 document.addEventListener("DOMContentLoaded", gifPreview);
 
-// Asynchronous function for when page loads
 async function pageLoad() {
   try {
-    // fetch data upon page load, then call the displayOnLoad function
-
     let response = await fetch(`https://project-blog-g4.herokuapp.com/blogs`);
     response = await response.json();
     displayOnLoad(response);
@@ -168,18 +165,21 @@ function addListeners(data) {
       document.querySelector(".comments_section").style.display = "block";
 
       // display comments fetched from blog database
-      const commentUl = document.createElement("ul")
-      commentUl.setAttribute("id", "comment-list")
-      commentUl.textContent = "Comments:"
+      const commentUl = document.createElement("ul");
+      commentUl.setAttribute("id", "comment-list");
+      commentUl.textContent = "Comments:";
       commentUl.style.display = "block";
       // iterate through comments in database and add to unordered list
-      for(let i in currentBlog.comments){
-        const commentLi = document.createElement("li")
+      for (let i in currentBlog.comments) {
+        const commentLi = document.createElement("li");
         commentLi.style.listStyleType = "none";
-        commentLi.textContent = currentBlog.comments[i]
-        commentUl.appendChild(commentLi)
+        commentLi.textContent = currentBlog.comments[i];
+        commentUl.appendChild(commentLi);
       }
-      singleBlog.insertBefore(commentUl, document.querySelector(".comments_section"))
+      singleBlog.insertBefore(
+        commentUl,
+        document.querySelector(".comments_section")
+      );
 
       // create a 'back button' that takes the user back to the main page of blogs
       const backButton = document.createElement("button");
@@ -202,7 +202,7 @@ function addListeners(data) {
         document.querySelector("#page3").style.display = "flex";
         document.querySelector("#emojis_section").style.display = "none";
         document.querySelector(".comments_section").style.display = "none";
-        commentUl.textContent="";
+        commentUl.textContent = "";
         document.querySelector("#form1").style.display = "block";
         document.querySelector(".nextpage").style.display = "block";
         backButton.style.display = "none";
@@ -210,8 +210,6 @@ function addListeners(data) {
       });
       // insert the back button above the single blog post
       singleBlog.insertBefore(backButton, blogPost);
-
-      
     });
   }
 }
@@ -370,32 +368,13 @@ function handleCommentValues(e) {
     currentBlog["comments"] = [comment];
   }
 
-  const commentLi = document.createElement("li")
+  const commentLi = document.createElement("li");
   commentLi.style.listStyleType = "none";
-  commentLi.textContent = comment
-  document.querySelector("#comment-list").appendChild(commentLi)
+  commentLi.textContent = comment;
+  document.querySelector("#comment-list").appendChild(commentLi);
 
   sendBlog(id, null, null, null, currentBlog["comments"], null);
 }
-
-// function sendComment(com) {
-//   const commentData = {
-//     id: null,
-//     comment: com,
-//   };
-//   console.log(commentData);
-//   const options = {
-//     method: "POST",
-//     body: JSON.stringify(commentData),
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   };
-//   fetch("http://localhost:3001/comments", options)
-//     .then((r) => r.json())
-//     .catch(console.warn);
-//   // location.reload();
-// }
 
 module.exports = {
   pageLoad,
